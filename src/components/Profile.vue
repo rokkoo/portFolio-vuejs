@@ -18,21 +18,25 @@
 </template>
 
 <script>
+import informationText from "./informationText.js";
 export default {
   data() {
     return {
-      slots: []
+      informationText,
+      textPag: 0
     };
   },
   computed: {
     information() {
-      return `Mi nombre es Alfonso y actualmente estoy centrado en JS, estoy titulado en grado superior en desarrollo web y 
-      también soy titutlado en el grado superior en desarrollo multiplataforma.`;
+      return informationText[this.textPag];
     }
   },
   methods: {
     changueShowInfo() {
-      console.log("show info");
+      //TODO: Añadir titulo a cada seccion?
+      this.textPag + 1 >= informationText.length
+        ? (this.textPag = 0)
+        : (this.textPag += 1);
     },
     onHover: function(e) {
       e.target.style("");
@@ -85,15 +89,32 @@ img {
 }
 
 .arrow {
-  color: #5778f3;
-  transition: transform 0.3s ease-in-out;
+  /* color: #5778f3; */
+  /* transition: transform 0.3s ease-in-out; */
+  animation: bounce 2s infinite;
   font-size: 25px;
-  padding: 15px 20px;
+  cursor: pointer;
 }
 
-.arrow:hover {
+/* .arrow:hover {
   cursor: pointer;
-  transform: translateX(25px);
+  transform: translateX(8px);
+} */
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-30px);
+  }
+  60% {
+    transform: translateX(-15px);
+  }
 }
 
 @media (max-width: 600px) {
