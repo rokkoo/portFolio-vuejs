@@ -1,6 +1,9 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
+  "maintainers": [
+    "Alfonso Aguirre"
+  ],
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,6 +12,7 @@
   },
   "dependencies": {
     "vue": "^2.6.6",
+    "vue-awesome": "^3.5.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -32,7 +36,16 @@
       "plugin:vue/essential",
       "@vue/prettier"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": "off",
+      "no-restricted-syntax": [
+        "error",
+        {
+          "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+          "message": "Unexpected property on console object was called"
+        }
+      ]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
