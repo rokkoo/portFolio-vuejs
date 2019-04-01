@@ -3,13 +3,20 @@
   <main>
     <section>
       <img src="../assets/profilePic.jpg" alt="Progfile img" />
-      <p class="hi">¡Hola 😊!</p>
-      <p>{{ information }}</p>
+      <p class="hi">{{ informationTitle }}</p>
+      <p class="information">{{ informationText }}</p>
+      <figure>
+        <div
+          v-for="(info, index) in information"
+          :key="index"
+          @click="changueShowInfo()"
+          class="circle"
+          v-bind:class="{ active: index === textPag }"
+        ></div>
+      </figure>
       <v-icon
         class="arrow"
         @mousedown.native="changueShowInfo()"
-        @mouseover.native="onHover($event)"
-        @mouseleave.native="onLeave()"
         name="arrow-right"
         scale="2"
       />
@@ -18,33 +25,27 @@
 </template>
 
 <script>
-import informationText from "./informationText.js";
+import information from "./informationText.js";
 export default {
   data() {
     return {
-      informationText,
+      information,
       textPag: 0
     };
   },
   computed: {
-    information() {
-      return informationText[this.textPag];
+    informationTitle() {
+      return information[this.textPag].title;
+    },
+    informationText() {
+      return information[this.textPag].text;
     }
   },
   methods: {
     changueShowInfo() {
-      //TODO: Añadir titulo a cada seccion?
-      this.textPag + 1 >= informationText.length
+      this.textPag + 1 >= information.length
         ? (this.textPag = 0)
         : (this.textPag += 1);
-    },
-    onHover: function(e) {
-      e.target.style("");
-      console.log(e.target);
-      console.log("aa");
-    },
-    onLeave: function() {
-      console.log("leave");
     }
   }
 };
@@ -72,6 +73,7 @@ section {
   border-radius: 5px;
   justify-self: center;
   width: 45%;
+  min-width: 70%;
   max-width: 80%;
   padding: 15px;
   line-height: 2em;
@@ -81,6 +83,10 @@ img {
   width: 28%;
   height: 28%;
   border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.082);
+}
+.information {
+  min-height: 10em;
 }
 
 .hi {
@@ -88,18 +94,32 @@ img {
   line-height: 0;
 }
 
-.arrow {
-  /* color: #5778f3; */
-  /* transition: transform 0.3s ease-in-out; */
-  animation: bounce 2s infinite;
-  font-size: 25px;
+figure {
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+.circle {
+  border-radius: 50%;
+  height: 7px;
+  width: 7px;
+  margin: 3px;
+  border: 1px solid #2c3e5059;
   cursor: pointer;
 }
 
-/* .arrow:hover {
+.active {
+  background-color: #141e30;
+}
+
+.arrow {
+  /* color: #5778f3; */
+  /* transition: transform 0.3s ease-in-out; */
+  animation: bounce 4s infinite;
+  font-size: 25px;
   cursor: pointer;
-  transform: translateX(8px);
-} */
+}
 
 @keyframes bounce {
   0%,

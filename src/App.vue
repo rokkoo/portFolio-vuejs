@@ -2,17 +2,20 @@
   <div id="app">
     <main>
       <Profile />
-      <Profile />
+      <Projects />
     </main>
   </div>
 </template>
 
 <script>
 import Profile from "./components/Profile";
+import Proyects from "./components/Proyects";
+
 export default {
   name: "app",
   components: {
-    Profile
+    Profile,
+    Proyects
   }
 };
 </script>
@@ -22,12 +25,8 @@ body {
   margin: 0;
 }
 #app {
-  @import url("https://fonts.googleapis.com/css?family=Lato");
   @import url("https://fonts.googleapis.com/css?family=Quicksand:500");
-
-  font-family: "Lato", sans-serif;
   font-family: "Quicksand", sans-serif;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
