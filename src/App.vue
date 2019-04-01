@@ -1,21 +1,21 @@
 <template>
   <div id="app">
     <main>
-      <Profile />
-      <Projects />
+      <Profile/>
+      <Projects/>
     </main>
   </div>
 </template>
 
 <script>
 import Profile from "./components/Profile";
-import Proyects from "./components/Proyects";
+import Projects from "./components/Proyects";
 
 export default {
   name: "app",
   components: {
     Profile,
-    Proyects
+    Projects
   }
 };
 </script>

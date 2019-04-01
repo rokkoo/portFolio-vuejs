@@ -2,7 +2,7 @@
 <template>
   <main>
     <section>
-      <img src="../assets/profilePic.jpg" alt="Progfile img" />
+      <img src="../assets/profilePic.jpg" alt="Progfile img">
       <p class="hi">{{ informationTitle }}</p>
       <p class="information">{{ informationText }}</p>
       <figure>
@@ -14,18 +14,14 @@
           v-bind:class="{ active: index === textPag }"
         ></div>
       </figure>
-      <v-icon
-        class="arrow"
-        @mousedown.native="changueShowInfo()"
-        name="arrow-right"
-        scale="2"
-      />
+      <v-icon class="arrow" @mousedown.native="changueShowInfo()" name="arrow-right" scale="2"/>
     </section>
   </main>
 </template>
 
 <script>
 import information from "./informationText.js";
+
 export default {
   data() {
     return {
@@ -69,7 +65,6 @@ main {
 section {
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: white;
   border-radius: 5px;
   justify-self: center;
   width: 45%;
