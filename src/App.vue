@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <main>
-      <Profile/>
-      <Projects/>
+      <Profile />
+      <Projects />
     </main>
   </div>
 </template>

@@ -2,7 +2,7 @@
 <template>
   <main>
     <section>
-      <img src="../assets/profilePic.jpg" alt="Progfile img">
+      <img src="../assets/profilePic.jpg" alt="Progfile img" />
       <p class="hi">{{ informationTitle }}</p>
       <p class="information">{{ informationText }}</p>
       <figure>
@@ -14,7 +14,12 @@
           v-bind:class="{ active: index === textPag }"
         ></div>
       </figure>
-      <v-icon class="arrow" @mousedown.native="changueShowInfo()" name="arrow-right" scale="2"/>
+      <v-icon
+        class="arrow"
+        @mousedown.native="changueShowInfo()"
+        name="arrow-right"
+        scale="2"
+      />
     </section>
   </main>
 </template>
@@ -69,7 +74,6 @@ section {
   justify-self: center;
   width: 45%;
   min-width: 70%;
-  max-width: 80%;
   padding: 15px;
   line-height: 2em;
 }

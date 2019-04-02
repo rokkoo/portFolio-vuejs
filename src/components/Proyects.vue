@@ -6,20 +6,21 @@
         <div
           v-for="(myRepos, index) in filterArray"
           :key="index"
-          v-bind:class="{js: myRepos.language.toLowerCase() === 'javascript'}"
+          v-bind:class="{ js: myRepos.language.toLowerCase() === 'javascript' }"
           class="repoContainer"
         >
-          <h4 class="repoTitle">{{myRepos.name}}</h4>
-          <h4 class="repoLang">{{myRepos.language}}</h4>
-          <div class="button">Ver proyecto</div>
+          <font-awesome-icon :icon="langIcon(myRepos.language)" size="4x" />
+          <h4 class="repoTitle">{{ myRepos.name }}</h4>
+          <!-- <p class="repoLang">{{ myRepos.language }}</p> -->
         </div>
       </div>
       <figure>
         <div
-          v-for="(page, index) in reposPageSize"
+          v-for="(n, index) in reposPageSize"
           :key="index"
           class="circle"
-          v-bind:class="{ active: index }"
+          v-bind:class="{ active: currentPage === index }"
+          @click="changueProyectPage(index)"
         ></div>
       </figure>
     </section>
@@ -29,8 +30,8 @@
 <script>
 export default {
   name: "proyect",
-  beforeMount: async function() {
-    await this.fetchRepos();
+  beforeMount: function() {
+    this.fetchRepos();
   },
   data: function() {
     return {
@@ -40,31 +41,39 @@ export default {
     };
   },
   methods: {
+    insertRepo: function(repo) {
+      const pagesLength = this.repos.length;
+      if (pagesLength == 0) this.repos.push([repo]);
+      else if (this.repos[pagesLength - 1].length < this.perPage)
+        this.repos[pagesLength - 1] = [...this.repos[pagesLength - 1], repo];
+      else this.repos.push([repo]);
+    },
     fetchRepos: async function() {
       const url = "https://api.github.com/users/rokkoo/repos";
       const rawData = await fetch(url);
       const jsonData = await rawData.json();
       //TODO: Crear arrays correspondientes a cantidad de paginas @perpage
-      this.repos = jsonData.map(({ name, language, html_url }, index) => {
-        return {
-          name,
-          language,
-          html_url
-        };
+      jsonData.map(({ name, language, html_url }) => {
+        this.insertRepo({ name, language, html_url });
       });
+    },
+    changueProyectPage: function(pointIndex) {
+      this.currentPage = pointIndex;
+    },
+    langIcon: function(language) {
+      const defaultValue = ["fab", "js-square"];
+      if (language.toLowerCase() === "javascript") return ["fab", "js-square"];
+      if (language.toLowerCase() === "java") return ["fab", "java"];
+
+      return defaultValue;
     }
   },
   computed: {
     filterArray: function() {
-      console.log(this.repos.filter((el, index) => index % 6 != 0));
-      return this.repos.filter((el, index) => index < 6);
+      return this.repos[this.currentPage];
     },
     reposPageSize: function() {
-      if (this.repos.length > 0)
-        return this.repos.reduce((pages, index) =>
-          index % 6 === 0 ? pages++ : pages
-        );
-      else return 0;
+      return this.repos.length;
     }
   }
 };
@@ -79,7 +88,6 @@ main {
 }
 
 section {
-  min-height: 70%;
   display: grid;
   grid-template-rows: 0.1fr 1fr;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -92,38 +100,36 @@ section {
 }
 
 .repoContainer {
+  cursor: pointer;
+  padding: 10px;
   background-color: white;
   margin: 10px;
   border-radius: 5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.js {
-  display: grid;
-  grid-template-rows: 0.1fr 1fr 0.3fr;
-  grid-auto-flow: dense;
-  /* background-image: url("../assets/js.jpg");
-  background-size: 100% 100%; */
+.repoContainer:hover {
+  box-shadow: 0 4px 8px 0 rgba(6, 81, 221, 0.308),
+    0 6px 20px 0 rgba(52, 152, 219, 0.24);
 }
-
 .repoTitle {
-  border-bottom: 1px solid gray;
+  margin-top: 20px;
 }
 
 .button {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  border-radius: 30%;
   background-color: #53a0fd;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 10px;
-  border-top-right-radius: 50px 20px;
-  border-top-left-radius: 50px 20px;
 }
 
 figure {
   margin: 0;
   display: flex;
   justify-content: center;
-  background-color: tomato;
   margin-right: 10px;
 }
 .circle {
@@ -137,5 +143,15 @@ figure {
 
 .active {
   background-color: #141e30;
+}
+
+@media (max-width: 600px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+  .section {
+    margin-top: 50px;
+  }
 }
 </style>
