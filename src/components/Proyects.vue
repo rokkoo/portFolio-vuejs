@@ -8,6 +8,7 @@
           :key="index"
           v-bind:class="{ js: myRepos.language.toLowerCase() === 'javascript' }"
           class="repoContainer"
+          @click="goToUrl(myRepos.html_url)"
         >
           <font-awesome-icon :icon="langIcon(myRepos.language)" size="4x" />
           <h4 class="repoTitle">{{ myRepos.name }}</h4>
@@ -66,6 +67,9 @@ export default {
       if (language.toLowerCase() === "java") return ["fab", "java"];
 
       return defaultValue;
+    },
+    goToUrl: function(url) {
+      window.open(url, "_blank");
     }
   },
   computed: {
@@ -89,7 +93,7 @@ main {
 
 section {
   display: grid;
-  grid-template-rows: 0.1fr 1fr;
+  grid-template-rows: 0.1fr 1fr 0.1fr;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5%;
 }
@@ -105,7 +109,8 @@ section {
   background-color: white;
   margin: 10px;
   border-radius: 5%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 3px rgba(116, 125, 140, 0.1),
+    0 0 0 1px rgba(116, 125, 140, 0.1);
 }
 
 .repoContainer:hover {
@@ -130,7 +135,7 @@ figure {
   margin: 0;
   display: flex;
   justify-content: center;
-  margin-right: 10px;
+  align-items: center;
 }
 .circle {
   border-radius: 50%;

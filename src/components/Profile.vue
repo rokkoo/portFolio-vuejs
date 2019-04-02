@@ -73,7 +73,6 @@ section {
   border-radius: 5px;
   justify-self: center;
   width: 45%;
-  min-width: 70%;
   padding: 15px;
   line-height: 2em;
 }
@@ -83,9 +82,6 @@ img {
   height: 28%;
   border-radius: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.082);
-}
-.information {
-  min-height: 10em;
 }
 
 .hi {
