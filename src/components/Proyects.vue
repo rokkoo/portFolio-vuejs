@@ -10,7 +10,7 @@
           class="repoContainer"
           @click="goToUrl(myRepos.html_url)"
         >
-          <font-awesome-icon :icon="langIcon(myRepos.language)" size="4x" />
+          <font-awesome-icon :icon="langIcon(myRepos.language)" size="4x"/>
           <h4 class="repoTitle">{{ myRepos.name }}</h4>
           <!-- <p class="repoLang">{{ myRepos.language }}</p> -->
         </div>
@@ -100,7 +100,10 @@ section {
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-columns: repeat(3, 1fr); */
+  grid-template-columns: repeat(3, minmax(12rem, 1fr));
+  font-size: 2.2vh;
+  margin: 10px;
 }
 
 .repoContainer {
@@ -151,10 +154,6 @@ figure {
 }
 
 @media (max-width: 600px) {
-  .projects {
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-  }
   .section {
     margin-top: 50px;
   }
