@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 <template>
   <main>
-    <section>
-      <img src="../assets/profilePic.jpg" alt="Progfile img" />
+    <SocialMedia/>
+    <section class="profile">
+      <img src="../assets/profilePic.jpg" alt="Progfile img">
       <p class="hi">{{ informationTitle }}</p>
       <p class="information">{{ informationText }}</p>
       <figure>
@@ -14,20 +15,18 @@
           v-bind:class="{ active: index === textPag }"
         ></div>
       </figure>
-      <v-icon
-        class="arrow"
-        @mousedown.native="changueShowInfo()"
-        name="arrow-right"
-        scale="2"
-      />
     </section>
   </main>
 </template>
 
 <script>
 import information from "./informationText.js";
+import SocialMedia from "./SocialMedia";
 
 export default {
+  components: {
+    SocialMedia
+  },
   data() {
     return {
       information,
@@ -62,24 +61,23 @@ main {
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: radial-gradient(50% 54%, #53a0fd 50%, #4f3eeb 200%);
   display: grid;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
+  grid-template-rows: 0.1fr 1fr;
 }
 
-section {
+.profile {
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5px;
+  width: 75%;
   justify-self: center;
-  width: 45%;
-  padding: 15px;
+  align-self: center;
   line-height: 2em;
 }
 
 img {
   width: 28%;
   height: 28%;
+  margin-top: 1rem;
   border-radius: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.082);
 }
@@ -87,21 +85,27 @@ img {
 .hi {
   font-size: 2em;
   line-height: 0;
+  margin-top: 1rem;
 }
 
 figure {
   margin: 0;
   display: flex;
-  justify-content: flex-end;
-  margin-right: 10px;
+  justify-content: center;
+  padding-bottom: 1rem;
 }
 .circle {
   border-radius: 50%;
-  height: 7px;
-  width: 7px;
+  height: 0.7rem;
+  width: 0.7rem;
   margin: 3px;
   border: 1px solid #2c3e5059;
   cursor: pointer;
+}
+
+.information {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .active {
@@ -133,10 +137,6 @@ figure {
 }
 
 @media (max-width: 600px) {
-  section {
-    width: 70%;
-  }
-
   img {
     width: 45%;
     height: 45%;
