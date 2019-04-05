@@ -1,9 +1,8 @@
 /* eslint-disable no-console */
 <template>
   <main>
-    <SocialMedia/>
     <section class="profile">
-      <img src="../assets/profilePic.jpg" alt="Progfile img">
+      <img src="../assets/profilePic.jpg" alt="Progfile img" />
       <p class="hi">{{ informationTitle }}</p>
       <p class="information">{{ informationText }}</p>
       <figure>
@@ -15,6 +14,8 @@
           v-bind:class="{ active: index === textPag }"
         ></div>
       </figure>
+      <hr />
+      <SocialMedia />
     </section>
   </main>
 </template>
@@ -61,7 +62,7 @@ main {
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: radial-gradient(50% 54%, #53a0fd 50%, #4f3eeb 200%);
   display: grid;
-  grid-template-rows: 0.1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 .profile {
@@ -118,6 +119,13 @@ figure {
   animation: bounce 4s infinite;
   font-size: 25px;
   cursor: pointer;
+}
+
+hr {
+  border: 0.5px solid #2c3e50;
+  border-radius: 5px;
+  width: 50%;
+  opacity: 0.3;
 }
 
 @keyframes bounce {
