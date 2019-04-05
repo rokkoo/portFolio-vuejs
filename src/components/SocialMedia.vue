@@ -37,7 +37,7 @@ section {
   margin: 10px;
   cursor: pointer;
   opacity: 0.8;
-  animation: bounce 1s infinite;
+  animation: bounce 1s infinite; /* Star animation */
   animation-play-state: paused; /* but paused */
 }
 
