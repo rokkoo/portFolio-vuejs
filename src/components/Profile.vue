@@ -2,7 +2,7 @@
 <template>
   <main>
     <section class="profile">
-      <img src="../assets/profilePic.jpg" alt="Progfile img" />
+      <img src="../assets/profilePic.jpg" alt="Progfile img">
       <div class="content">
         <p class="hi">{{ informationTitle }}</p>
         <p class="information">{{ informationText }}</p>
@@ -17,8 +17,8 @@
             v-bind:class="{ active: index === textPag }"
           ></div>
         </figure>
-        <hr />
-        <SocialMedia />
+        <hr>
+        <SocialMedia/>
       </footer>
     </section>
   </main>
@@ -71,7 +71,7 @@ main {
 }
 
 .profile {
-  width: 75%;
+  width: 45%;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5px;
@@ -156,6 +156,7 @@ hr {
 
 @media (max-width: 600px) {
   .profile {
+    width: 75%;
     grid-template-rows: 0.1fr 1.5fr 0.1fr; /* img content footer */
     line-height: 1.5em;
   }
