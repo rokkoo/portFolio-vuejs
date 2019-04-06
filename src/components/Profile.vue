@@ -99,6 +99,7 @@ img {
   font-size: 2em;
   line-height: 0;
   margin: 0;
+  padding-bottom: 10px;
 }
 
 figure {
